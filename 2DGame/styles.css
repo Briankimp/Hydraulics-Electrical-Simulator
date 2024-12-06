@@ -1,0 +1,79 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Layout */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+/* Toolbox */
+.toolbox {
+    width: 250px;
+    padding: 20px;
+    background-color: #e0e0e0;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.toolbox h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.component {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.component:hover {
+    background-color: #e0e0e0;
+}
+
+/* Simulation Board */
+.simulation-board {
+    flex: 1;
+    margin-left: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    min-height: 400px;
+}
+
+.simulation-board h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* Drag-and-Drop Styles */
+.component.dragging {
+    opacity: 0.5;
+}
+
+.simulation-board div {
+    position: absolute;
+}
+
+/* Connection Points */
+.connection-point {
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+}
