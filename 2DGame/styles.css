@@ -5,75 +5,196 @@
     box-sizing: border-box;
 }
 
-/* Body and Layout */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
     display: flex;
-    justify-content: space-between;
     height: 100vh;
-    background-color: #f4f4f4;
+    overflow: hidden;
+    background-color: #e9ecef;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Toolbox */
+/* Toolbox Styling */
 .toolbox {
-    width: 250px;
-    padding: 20px;
-    background-color: #e0e0e0;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-right: 1px solid #dee2e6;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
 }
 
-.toolbox h2 {
-    text-align: center;
-    margin-bottom: 20px;
+.toolbox-section {
+    margin-bottom: 2rem;
+}
+
+.toolbox-section h3 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #3498db;
+}
+
+.component-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .component {
+    padding: 0.8rem;
     background-color: #fff;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    cursor: move;
+    user-select: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #444;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .component:hover {
-    background-color: #e0e0e0;
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-color: #3498db;
 }
 
-/* Simulation Board */
+/* Simulation Board Styling */
 .simulation-board {
-    flex: 1;
-    margin-left: 20px;
-    padding: 20px;
+    flex-grow: 1;
     background-color: #fff;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     position: relative;
-    min-height: 400px;
+    overflow: auto;
+    background-image: 
+        linear-gradient(#e1e1e1 1px, transparent 1px),
+        linear-gradient(90deg, #e1e1e1 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: -1px -1px;
 }
 
-.simulation-board h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 18px;
-}
-
-/* Drag-and-Drop Styles */
-.component.dragging {
-    opacity: 0.5;
-}
-
-.simulation-board div {
+.grid-cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #f0f0f0;
     position: absolute;
+    pointer-events: none;
 }
 
-/* Connection Points */
+/* Properties Panel Styling */
+.properties-panel {
+    width: 300px;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-left: 1px solid #dee2e6;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.properties-panel h3 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #3498db;
+}
+
+/* Component Instance Styling */
+.component-instance {
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid #34495e;
+    border-radius: 6px;
+    padding: 1rem;
+    cursor: move;
+    user-select: none;
+    min-width: 80px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease;
+}
+
+.component-instance:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.component-instance[data-type="pushbutton"] {
+    background-color: #ecf0f1;
+    border-color: #7f8c8d;
+}
+
+.component-instance[data-type="relay"] {
+    background-color: #f0f9ff;
+    border-color: #3498db;
+}
+
+.component-instance[data-type^="cable"] {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.5rem;
+}
+
+.component-instance[data-type="cable-red"] {
+    border-color: #e74c3c;
+}
+
+.component-instance[data-type="cable-blue"] {
+    border-color: #3498db;
+}
+
+/* Connection Points Styling */
 .connection-point {
-    width: 10px;
-    height: 10px;
-    background-color: #ff0000;
+    width: 12px;
+    height: 12px;
+    background-color: #95a5a6;
+    border: 2px solid #7f8c8d;
     border-radius: 50%;
     position: absolute;
     cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 2;
+}
+
+.connection-point:hover {
+    transform: scale(1.2);
+    background-color: #3498db;
+    border-color: #2980b9;
+}
+
+/* Add icons to components */
+.component::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.component[data-type="pushbutton"]::before {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%233498db" stroke="%232980b9" stroke-width="2"/></svg>');
+}
+
+.component[data-type="relay"]::before {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" fill="%2334495e" rx="2"/></svg>');
+}
+
+/* Animation for dragging */
+.component-instance.dragging {
+    opacity: 0.8;
+    transform: scale(1.05);
 }
